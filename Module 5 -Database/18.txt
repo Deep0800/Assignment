@@ -1,0 +1,29 @@
+-----
+18
+-----
+mysql> describe salespeople;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| salesman_id | int         | NO   | PRI | NULL    |       |
+| name        | varchar(50) | YES  |     | NULL    |       |
+| city        | varchar(50) | YES  |     | NULL    |       |
+| commision   | double      | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into salespeople values(5001,james hoog, new yourk ,0.15)
+,(5002, nail knite, paris, 0.13),(5005,pit alex, london,0.11),(5006,mc lyon,paris,0.14),(5007,paul adam,rome, 0.13),(5003, lauson hen,san jose,0.12);
+
+mysql> select * from salespeopele;
++-------------+------------+-----------+-----------+
+| salesman_id | name       | city      | commision |
++-------------+------------+-----------+-----------+
+|        5001 | james hoog | new yourk |      0.15 |
+|        5002 | nail knite |  paris    |      0.13 |
+|        5002 | nail knite |  paris    |      0.13 |
+|        5005 | pit alex   | london    |      0.11 |
+|        5006 | mc lyon    | paris     |      0.14 |
+|        5007 | paul adam  | rome      |      0.13 |
++-------------+------------+-----------+-----------+
+6 rows in set (0.00 sec)

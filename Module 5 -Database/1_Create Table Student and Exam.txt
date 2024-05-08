@@ -1,0 +1,60 @@
+-----
+1
+-----
+create database school;
+Query OK, 1 row affected (0.27 sec)
+
+mysql> use school;
+Database changed
+mysql> create table students(rollno int primary key,name varchar (50),branch varchar(50));
+Query OK, 0 rows affected (1.10 sec)
+
+mysql> describe students;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| branch | varchar(50) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.48 sec)
+
+create table exam(rollno int,s_code varchar(50),marks int ,p_code varchar(50),foreign key(rollno) references students(rollno));
+Query OK, 0 rows affected (0.51 sec)
+
+mysql> describe exam;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | YES  | MUL | NULL    |       |
+| s_code | varchar(50) | YES  |     | NULL    |       |
+| marks  | int         | YES  |     | NULL    |       |
+| p_code | varchar(50) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into students values(1,"jay","computer science");
+Query OK, 1 row affected (0.20 sec)
+
+mysql> insert into students values(2,"suhani","electronic and com");
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into students values(3,"kriti","electronic and com");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from  students;
++--------+--------+--------------------+
+| rollno | name   | branch             |
++--------+--------+--------------------+
+|      1 | jay    | computer science   |
+|      2 | suhani | electronic and com |
+|      3 | kriti  | electronic and com |
++--------+--------+--------------------+
+3 rows in set (0.06 sec)
+
+mysql> insert into exam values(1,"cs11",50,"cs");
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into exam values(1,"cs12",60,"cs"),(2,"ec101",66,"ec"),(2,"ec102",70,"ec"),(3,"ec101",45,"ec"),(3,"ec102",50,"ec");
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0

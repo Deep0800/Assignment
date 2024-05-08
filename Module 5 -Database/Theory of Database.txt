@@ -1,0 +1,213 @@
+1. What do you understand By Database?
+
+=> A database is a system for storing, organizing, and managing data so it can be easily accessed, updated, and retrieved. Think of it as a digital filing cabinet where you can keep information in an organized manner.
+
+=>Here are some basic features of a database:
+
+* Data Storage: It keeps information like names, addresses, or other data in tables or similar structures.
+
+* Data Retrieval: You can search for specific data and get results quickly.
+
+* Data Management: You can add, edit, or delete data as needed.
+
+* Security: Databases can have password protection to control who can see or change the data.
+
+* Data Relationships: In some databases, you can connect different types of data so they can work together.
+
+=>There are different types of databases, such as:
+
+* Relational Databases: They organize data in tables with rows and columns.
+
+* NoSQL Databases: These can handle various data types, like text, images, or video, in a flexible way.
+
+2. What is Normalization?
+
+=> Normalization is a way of organizing data in a database to make it more efficient and easier to manage. It involves breaking down tables into smaller, related tables and removing duplicate data. The goal is to improve data integrity and minimize redundancy.
+
+=>Here are the main levels of normalization, each with specific rules:
+
+* First Normal Form (1NF): Ensure that each column contains only one value (no lists or arrays), and that each row in a table is unique.
+
+* Second Normal Form (2NF): Remove partial dependencies by making sure all columns depend on the entire primary key, not just part of it.
+
+* Third Normal Form (3NF): Remove transitive dependencies, which means that each non-primary key column depends only on the primary key, not on other non-primary key columns.
+
+3. What is Difference between DBMS and RDBMS?
+
+Feature   	                DBMS	                                RDBMS
+Data Structure	Can use various data structures     Uses tables with rows and columns
+                like files or arrays.	 
+
+Relationships	Doesn't support relationships       Supports relationships between tables
+                between data.	
+
+Normalization	May not support full normalization.	Supports normalization to reduce redundancy 
+                                                    and improve data integrity.
+
+Query Language	May have a proprietary or           Uses SQL for querying and managing data. 
+                basic query language.	
+
+Data Integrity	Data integrity features are         Provides data integrity through constraints like    
+                limited.	                        primary and foreign keys.
+
+Scalability	    Less scalable, especially with      More scalable and can handle large data sets efficiently.
+                large data sets.	  
+
+Data Access	    Data access might be slower due     Efficient data access through indexes and optimization 
+                to lack of optimization.	        techniques.
+
+Examples	    Examples include simple databases   Examples include MySQL,PostgreSQL,Oracle, and SQL Server. 
+                like file-based systems.	     
+
+4. What is MF Cod Rule of RDBMS Systems?
+
+* Rule 1: The Information Rule
+=>All information, whether it is user information or metadata, that is stored in a database must be entered as a value in a cell of a table. It is said that everything within the database is organized in a table layout.
+
+* Rule 2: The Guaranteed Access Rule
+=>Each data element is guaranteed to be accessible logically with a combination of the table name, primary key (row value), and attribute name (column value). 
+
+* Rule 3: Systematic Treatment of NULL Values
+=>Every Null value in a database must be given a systematic and uniform treatment. 
+
+*Rule 4: Active Online Catalog Rule
+=>The database catalog, which contains metadata about the database, must be stored and accessed using the same relational database management system.
+
+* Rule 5: The Comprehensive Data Sublanguage Rule
+=>A crucial component of any efficient database system is its ability to offer an easily understandable data manipulation language (DML) that facilitates defining, querying, and modifying information within the database.
+
+* Rule 6: The View Updating Rule
+=>All views that are theoretically updatable must also be updatable by the system.
+
+* Rule 7: High-level Insert, Update, and Delete
+=>A successful database system must possess the feature of facilitating high-level insertions, updates, and deletions that can grant users the ability to conduct these operations with ease through a single query.
+
+* Rule 8: Physical Data Independence
+=>Application programs and activities should remain unaffected when changes are made to the physical storage structures or methods.
+
+* Rule 9: Logical Data Independence 
+=>Application programs and activities should remain unaffected when changes are made to the logical structure of the data, such as adding or modifying tables.
+
+* Rule 10: Integrity Independence
+=>Integrity constraints should be specified separately from application programs and stored in the catalog. They should be automatically enforced by the database system.
+
+* Rule 11: Distribution Independence
+=>The distribution of data across multiple locations should be invisible to users, and the database system should handle the distribution transparently.
+
+* Rule 12: Non-Subversion Rule
+=>If the interface of the system is providing access to low-level records, then the interface must not be able to damage the system and bypass security and integrity constraints.
+
+5. What do you understand By Data Redundancy?
+
+=>Data redundancy refers to the unnecessary duplication of data within a database or data storage system. It occurs when the same piece of data is stored in multiple places, either within a single table or across multiple tables.
+
+=>While some level of data redundancy might be intentional for performance reasons, excessive or unintentional data redundancy can lead to several issues:
+
+* Wasted Storage: Storing the same data multiple times can use more storage space than necessary.
+
+* Data Inconsistency: If the same data exists in multiple places, changes to one instance of the data might not be reflected in the other instances. This can lead to data being inconsistent across the database.
+
+* Update Anomalies: When data redundancy exists, updating data in one place might require updates in other places as well. If these updates are not done correctly, data inconsistencies can occur.
+
+* Slower Performance: Queries might take longer to execute if they need to navigate through redundant data.
+
+* Complex Maintenance: Maintaining and managing redundant data can be more complicated, especially when trying to keep data consistent across multiple locations.
+
+6. What is DDL Interpreter?
+
+=>A DDL interpreter is a component of a database management system that processes and executes DDL commands. DDL is a subset of SQL used to define and manage the structure of database objects such as tables, indexes, views, schemas, and constraints.
+
+=>When a DDL statement is submitted, the DDL interpreter parses the command and translates it into a series of low-level operations that modify the database's schema or metadata. These operations might include:
+
+* Creating database objects like tables, views, indexes, and schemas.
+
+* Altering existing database objects to change their structure, such as adding or modifying columns, or changing constraints.
+
+* Dropping (deleting) database objects such as tables, views, and indexes.
+
+7. What is DML Compiler in SQL?
+
+=>In the context of a database management system, a DML compiler is a component responsible for processing and executing DML statements. DML is a subset of SQL used to manipulate data within a database. It includes commands for retrieving, inserting, updating, and deleting data.
+
+=>A DML compiler's main tasks include:
+
+* Parsing DML Statements: The DML compiler reads DML statements (e.g., SELECT, INSERT, UPDATE, DELETE) and checks their syntax to ensure they follow the correct SQL grammar.
+
+* Generating Query Execution Plans: After parsing a DML statement, the compiler generates an execution plan that outlines the sequence of operations needed to perform the requested action. This plan may include data retrieval, insertion, modification, or deletion.
+
+* Optimizing Queries: The DML compiler may optimize the query execution plan for better performance. This can involve choosing the most efficient access methods (e.g., using indexes) or rearranging operations to reduce the amount of data processed.
+
+* Executing Queries: Once the execution plan is ready, the DML compiler passes it to the query execution engine, which carries out the operations and returns results to the user.
+
+8. What is SQL Key Constraints writing an Example of SQL Key Constraints.
+
+=>SQL key constraints are rules defined at the table level to enforce data integrity and ensure the accuracy and consistency of the data within a database. They control relationships between tables and the uniqueness of data within a table.
+
+=>Here are the main types of key constraints in SQL:
+
+* Primary Key Constraint: A primary key constraint enforces the uniqueness of a column in a table. It ensures that each value in the primary key columns is unique and not null.
+Eg:-
+        CREATE TABLE Employees (
+            EmployeeID INT PRIMARY KEY,
+            Name VARCHAR(50),
+            Age INT
+        );
+
+* Foreign Key Constraint: A foreign key constraint enforces a relationship between two tables by linking a column in one table to the primary key columns of another table. It ensures referential integrity by allowing only values in the foreign key column that exist in the referenced primary key column.
+Eg:- 
+        CREATE TABLE Orders (
+            OrderID INT PRIMARY KEY,
+            EmployeeID INT,
+            OrderDate DATE,
+            FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+        );
+
+* Unique Constraint: A unique constraint enforces the uniqueness of a column in a table. It ensures that each value in the unique columns is unique, but it allows null values.
+Eg:-
+        CREATE TABLE Products (
+            ProductID INT PRIMARY KEY,
+            ProductName VARCHAR(50) UNIQUE,
+            Price DECIMAL(10, 2)
+        );
+
+* Check Constraint: A check constraint specifies a condition that must be true for every row in a table. It can be used to enforce rules such as data ranges or other business logic.
+Eg:-
+        CREATE TABLE Employees (
+            EmployeeID INT PRIMARY KEY,
+            Name VARCHAR(50),
+            Age INT CHECK (Age >= 18)
+        );
+
+9. What is save Point? How to create a save Point write a Query?
+
+=> A savepoint is a point within a transaction to which you can roll back part of the transaction without affecting the entire transaction. Savepoints allow you to create a checkpoint in the transaction, providing more granular control over how the transaction proceeds and the ability to roll back only a specific part of the transaction if necessary.
+
+=>In SQL, you can create a savepoint using the SAVEPOINT command, followed by the name of the savepoint. This sets a point within the transaction where you can return if an issue occurs.
+
+=>Here is an example of how to create and use a savepoint:
+Eg:-
+        SAVEPOINT my_savepoint_name;
+
+10. What is trigger and how to create a Trigger in SQL?
+
+=>A trigger is a type of stored procedure that automatically runs or "fires" in response to specific events on a particular table or view in a database. Triggers can be set to respond to events such as INSERT, UPDATE, or DELETE operations. They can be useful for enforcing business rules, maintaining data integrity, auditing changes, and performing other automated actions within a database.
+
+=>There are two main types of triggers based on when they fire:
+
+* Before Triggers: These triggers fire before the triggering event occurs (e.g., before an INSERT, UPDATE, or DELETE operation).
+
+* After Triggers: These triggers fire after the triggering event occurs (e.g., after an INSERT, UPDATE, or DELETE operation).
+
+=>Here's an example of how to create a trigger in SQL:
+
+Let's assume we have a table called Orders and a table called OrderHistory. We want to create a trigger that automatically inserts a record into the OrderHistory table whenever a new record is inserted into the Orders table.
+Eg:-
+
+        CREATE TRIGGER order_insert_trigger
+        AFTER INSERT ON Orders
+        FOR EACH ROW
+        BEGIN
+            INSERT INTO OrderHistory (OrderID, CustomerID, OrderDate)
+            VALUES (NEW.OrderID, NEW.CustomerID, NEW.OrderDate);
+        END;
+

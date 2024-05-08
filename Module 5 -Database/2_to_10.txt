@@ -1,0 +1,232 @@
+-----
+2
+-----
+create database company;
+Query OK, 1 row affected (0.13 sec)
+
+mysql> use company;
+Database changed
+mysql> create table employee(employee_id int primary key,first_name varchar (50),last_name varchar (50),salary int,joining_date date, department varchar (50));
+Query OK, 0 rows affected (0.43 sec)
+
+mysql> describe employee;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| employee_id  | int         | NO   | PRI | NULL    |       |
+| first_name   | varchar(50) | YES  |     | NULL    |       |
+| last_name    | varchar(50) | YES  |     | NULL    |       |
+| salary       | int         | YES  |     | NULL    |       |
+| joining_date | date        | YES  |     | NULL    |       |
+| department   | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+create table incentive(employee_id int,incentive_date date,incentive_amount int);
+Query OK, 0 rows affected (0.54 sec)
+
+mysql> describe incentive;
++------------------+------+------+-----+---------+-------+
+| Field            | Type | Null | Key | Default | Extra |
++------------------+------+------+-----+---------+-------+
+| employe_id       | int  | YES  | MUL | NULL    |       |
+| incentive_date   | date | YES  |     | NULL    |       |
+| incentive_amount | int  | YES  |     | NULL    |       |
++------------------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee values (1,"john","abraham",1000000,"01-jan-13 12:00:00 AM","banking");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee values (2,"michael","clarke",8000000,"01-feb-13 12:00:00 AM","insurance");
+    insert into employee values (3,"roy","thomas",7000000,"01-feb-13
+12:00:00 AM","banking"),(4,"tom","jose",6000000,"01-feb-13 12:00:00 AM",
+"insurance");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into employee values (5,"jerry","pinto",650000,"01-feb-13
+12:00:00 AM","insuarnce"),(6,"philip","mathew",750000,"01-jan-13 12:00:0
+0 AM","services");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into employee values (7,"testname1","123",650000,"01-jan-1
+3 12:00:00 AM","services"),(8,"testname2","lname%",600000,"01-feb-13 12:
+00:00 AM","insurance");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select *from employee;
++------------+------------+-----------+---------+-----------------------+------------+
+| employe_id | first_name | last_name | salary  | joining_date
+| department |
++------------+------------+-----------+---------+-----------------------+------------+
+|          1 | john       | abraham   | 1000000 | 01-jan-13 12:00:00 AM | banking    |
+|          2 | michael    | clarke    | 8000000 | 01-feb-13 12:00:00 AM | insurance  |
+|          3 | roy        | thomas    | 7000000 | 01-feb-13 12:00:00 AM | banking    |
+|          4 | tom        | jose      | 6000000 | 01-feb-13 12:00:00 AM | insurance  |
+|          5 | jerry      | pinto     |  650000 | 01-feb-13 12:00:00 AM | insuarnce  |
+|          6 | philip     | mathew    |  750000 | 01-jan-13 12:00:00 AM | services   |
+|          7 | testname1  | 123       |  650000 | 01-jan-13 12:00:00 AM | services   |
+|          8 | testname2  | lname%    |  600000 | 01-feb-13 12:00:00 AM | insurance  |
++------------+------------+-----------+---------+-----------------------+------------+
+
+
+mysql> insert into incentive values(1,"2013-02-01",5000),(2,"2013-02-01",3000),(3,"2013-02-01",4000),(1,"2013-01-01",4500),(2,"2013-01-01",3500);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from incentive;
++------------+----------------+------------------+
+| employe_id | incentive_date | incentive_amount |
++------------+----------------+------------------+
+|          1 | 2013-02-01     |             5000 |
+|          2 | 2013-02-01     |             3000 |
+|          3 | 2013-02-01     |             4000 |
+|          1 | 2013-01-01     |             4500 |
+|          2 | 2013-01-01     |             3500 |
++------------+----------------+------------------+
+5 rows in set (0.00 sec)
+
+-----
+3
+-----
+mysql> select first_name as employee_name from employee where first_name="tom";
++---------------+
+| employee_name |
++---------------+
+| tom           |
++---------------+
+1 row in set (0.00 sec)
+
+-----
+4
+-----
+mysql> select first_name,salary ,joining_date from employee;;
++------------+---------+-----------------------+
+| first_name | salary  | joining_date          |
++------------+---------+-----------------------+
+| john       | 1000000 | 01-jan-13 12:00:00 AM |
+| michael    | 8000000 | 01-feb-13 12:00:00 AM |
+| roy        | 7000000 | 01-feb-13 12:00:00 AM |
+| tom        | 6000000 | 01-feb-13 12:00:00 AM |
+| jerry      |  650000 | 01-feb-13 12:00:00 AM |
+| philip     |  750000 | 01-jan-13 12:00:00 AM |
+| testname1  |  650000 | 01-jan-13 12:00:00 AM |
+| testname2  |  600000 | 01-feb-13 12:00:00 AM |
++------------+---------+-----------------------+
+8 rows in set (0.00 sec)
+
+
+-----
+5
+-----
+mysql> select * from employee order by first_name asc;
++------------+------------+-----------+---------+-----------------------+------------+
+| employe_id | first_name | last_name | salary  | joining_date          | department |
++------------+------------+-----------+---------+-----------------------+------------+
+|          5 | jerry      | pinto     |  650000 | 01-feb-13 12:00:00 AM | insuarnce  |
+|          1 | john       | abraham   | 1000000 | 01-jan-13 12:00:00 AM | banking    |
+|          2 | michael    | clarke    | 8000000 | 01-feb-13 12:00:00 AM | insurance  |
+|          6 | philip     | mathew    |  750000 | 01-jan-13 12:00:00 AM | services   |
+|          3 | roy        | thomas    | 7000000 | 01-feb-13 12:00:00 AM | banking    |
+|          7 | testname1  | 123       |  650000 | 01-jan-13 12:00:00 AM | services   |
+|          8 | testname2  | lname%    |  600000 | 01-feb-13 12:00:00 AM | insurance  |
+|          4 | tom        | jose      | 6000000 | 01-feb-13 12:00:00 AM | insurance  |
++------------+------------+-----------+---------+-----------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee order by  salary desc;
++------------+------------+-----------+---------+-----------------------+------------+
+| employe_id | first_name | last_name | salary  | joining_date          | department |
++------------+------------+-----------+---------+-----------------------+------------+
+|          2 | michael    | clarke    | 8000000 | 01-feb-13 12:00:00 AM | insurance  |
+|          3 | roy        | thomas    | 7000000 | 01-feb-13 12:00:00 AM | banking    |
+|          4 | tom        | jose      | 6000000 | 01-feb-13 12:00:00 AM | insurance  |
+|          1 | john       | abraham   | 1000000 | 01-jan-13 12:00:00 AM | banking    |
+|          6 | philip     | mathew    |  750000 | 01-jan-13 12:00:00 AM | services   |
+|          5 | jerry      | pinto     |  650000 | 01-feb-13 12:00:00 AM | insuarnce  |
+|          7 | testname1  | 123       |  650000 | 01-jan-13 12:00:00 AM | services   |
+|          8 | testname2  | lname%    |  600000 | 01-feb-13 12:00:00 AM | insurance  |
++------------+------------+-----------+---------+-----------------------+------------+
+8 rows in set (0.00 sec)
+
+
+-----
+6
+-----
+mysql> select * from employee where first_name like 'j%';
++------------+------------+-----------+---------+-----------------------+------------+
+| employe_id | first_name | last_name | salary  | joining_date          | department |
++------------+------------+-----------+---------+-----------------------+------------+
+|          1 | john       | abraham   | 1000000 | 01-jan-13 12:00:00 AM | banking    |
+|          5 | jerry      | pinto     |  650000 | 01-feb-13 12:00:00 AM | insuarnce  |
++------------+------------+-----------+---------+-----------------------+------------+
+2 rows in set (0.01 sec)
+
+
+-----
+7
+-----
+mysql> select department, max(salary) as max_salary
+    -> from employee group by department;
++------------+------------+
+| department | max_salary |
++------------+------------+
+| banking    |    7000000 |
+| insurance  |    8000000 |
+| insuarnce  |     650000 |
+| services   |     750000 |
++------------+------------+
+4 rows in set (0.01 sec)
+
+-----
+8
+-----
+mysql> select * from employee order by salary asc;
++------------+------------+-----------+---------+-----------------------+------------+
+| employe_id | first_name | last_name | salary  | joining_date
+| department |
++------------+------------+-----------+---------+-----------------------+------------+
+|          8 | testname2  | lname%    |  600000 | 01-feb-13 12:00:00 AM | insurance  |
+|          5 | jerry      | pinto     |  650000 | 01-feb-13 12:00:00 AM | insuarnce  |
+|          7 | testname1  | 123       |  650000 | 01-jan-13 12:00:00 AM | services   |
+|          6 | philip     | mathew    |  750000 | 01-jan-13 12:00:00 AM | services   |
+|          1 | john       | abraham   | 1000000 | 01-jan-13 12:00:00 AM | banking    |
+|          4 | tom        | jose      | 6000000 | 01-feb-13 12:00:00 AM | insurance  |
+|          3 | roy        | thomas    | 7000000 | 01-feb-13 12:00:00 AM | banking    |
+|          2 | michael    | clarke    | 8000000 | 01-feb-13 12:00:00 AM | insurance  |
++------------+------------+-----------+---------+-----------------------+------------+
+8 rows in set (0.00 sec)
+
+-----
+9
+-----
+mysql> SELECT e.first_name, i.incentive_amount
+    -> FROM employee e
+    -> INNER JOIN incentive i ON e.employee_id = i.employee_id
+    -> WHERE i.incentive_amount > 3000;
+Empty set (0.00 sec)
+
+-----
+10
+-----
+mysql> CREATE VIEW viewtable AS
+    -> SELECT * FROM employee;
+ERROR 1050 (42S01): Table 'viewtable' already exists
+mysql>
+mysql> DELIMITER //
+mysql> CREATE TRIGGER insert_employee_trigger
+    -> AFTER INSERT ON employee
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO viewtable VALUES (NEW.employee_id, NEW.first_name, NEW.last_name, NEW.salary, NEW.joining_date, NEW.department);
+    -> END;
+    -> //
+
+
+mysql> INSERT INTO employee VALUES (9, "ABC", "Employee", 900000, "2024-05-08", "IT");
+
+mysql> SELECT * FROM viewtable;
+

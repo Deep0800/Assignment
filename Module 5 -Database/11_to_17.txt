@@ -1,0 +1,157 @@
+-----
+11
+-----
+
+mysql> describe salesperson;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| sno   | int         | NO   | PRI | NULL    |       |
+| sname | varchar(50) | YES  |     | NULL    |       |
+| city  | varchar(50) | YES  |     | NULL    |       |
+| comm  | double      | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+ANS==2
+
+mysql> describe customer;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| sno    | int         | YES  | MUL | NULL    |       |
+| cnm    | int         | NO   | PRI | NULL    |       |
+| cname  | varchar(50) | YES  |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| rating | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into salesperson values(1001,"peel","london",0.12),
+(1002,"serres","san jose",0.13),(1004,"motika","london",0.11),
+(1007,"rafkin","barcelona",0.15),
+(1003,"axelrod","new york",0.1);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into customer values(1001,201,"hoffman","london",100),
+(1003,202,"giovanne","roe",200),(1002,203,"liu","san jose",300),
+(1002,204,"grass","barcelona",100),(1007,206,"clemens","london",300),
+(1004,207,"pereira","roe",100);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from salesperson;
++------+---------+-----------+------+
+| sno  | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | london    | 0.12 |
+| 1002 | serres  | san jose  | 0.13 |
+| 1003 | axelrod | new york  |  0.1 |
+| 1004 | motika  | london    | 0.11 |
+| 1007 | rafkin  | barcelona | 0.15 |
++------+---------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer;
++------+-----+----------+-----------+--------+
+| sno  | cnm | cname    | city      | rating |
++------+-----+----------+-----------+--------+
+| 1001 | 201 | hoffman  | london    |    100 |
+| 1003 | 202 | giovanne | roe       |    200 |
+| 1002 | 203 | liu      | san jose  |    300 |
+| 1002 | 204 | grass    | barcelona |    100 |
+| 1007 | 206 | clemens  | london    |    300 |
+| 1004 | 207 | pereira  | roe       |    100 |
++------+-----+----------+-----------+--------+
+6 rows in set (0.00 sec)
+
+-----
+12
+-----
+mysql> select * from salesperson;
++------+---------+-----------+------+
+| sno  | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | peel    | london    | 0.12 |
+| 1002 | serres  | san jose  | 0.13 |
+| 1003 | axelrod | new york  |  0.1 |
+| 1004 | motika  | london    | 0.11 |
+| 1007 | rafkin  | barcelona | 0.15 |
++------+---------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer;
++------+-----+----------+-----------+--------+
+| sno  | cnm | cname    | city      | rating |
++------+-----+----------+-----------+--------+
+| 1001 | 201 | hoffman  | london    |    100 |
+| 1003 | 202 | giovanne | roe       |    200 |
+| 1002 | 203 | liu      | san jose  |    300 |
+| 1002 | 204 | grass    | barcelona |    100 |
+| 1007 | 206 | clemens  | london    |    300 |
+| 1004 | 207 | pereira  | roe       |    100 |
++------+-----+----------+-----------+--------+
+6 rows in set (0.00 sec)
+
+-----
+13
+-----
+mysql> SELECT * FROM customer WHERE rating > 1000;
+
+Empty set (0.00 sec)
+
+-----
+14
+-----
+mysql> SELECT sname, city
+FROM salesperson
+WHERE city = 'london' AND comm > 0.12;
+
++---------+--------+
+| sname   | city   |
++---------+--------+
+| peel    | london |
+| serres  | london |
++---------+--------+
+2 rows in set (0.00 sec)
+
+-----
+15
+-----
+mysql> select * from salesperson where city in ("barcelona","london");
++------+--------+-----------+------+
+| sno  | sname  | city      | comm |
++------+--------+-----------+------+
+| 1001 | peel   | london    | 0.12 |
+| 1004 | motika | london    | 0.11 |
+| 1007 | rafkin | barcelona | 0.15 |
++------+--------+-----------+------+
+3 rows in set (0.00 sec)
+
+-----
+16
+-----
+mysql> select * from salesperson where comm between 0.10 and 0.12;
++------+---------+----------+------+
+| sno  | sname   | city     | comm |
++------+---------+----------+------+
+| 1001 | peel    | london   | 0.12 |
+| 1003 | axelrod | new york |  0.1 |
+| 1004 | motika  | london   | 0.11 |
++------+---------+----------+------+
+3 rows in set (0.00 sec)
+
+-----
+17
+-----
+mysql> select * from customer where rating >100 or (rating <=100 and city="rome");
++------+-----+----------+----------+--------+
+| sno  | cnm | cname    | city     | rating |
++------+-----+----------+----------+--------+
+| 1003 | 202 | giovanne | roe      |    200 |
+| 1002 | 203 | liu      | san jose |    300 |
+| 1007 | 206 | clemens  | london   |    300 |
++------+-----+----------+----------+--------+
+3 rows in set (0.00 sec)
+
