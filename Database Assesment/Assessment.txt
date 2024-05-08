@@ -1,0 +1,115 @@
+mysql> create database assessment;
+Query OK, 1 row affected (0.32 sec)
+
+mysql> use assessment;
+Database changed
+mysql>  create table coustomer(coustomer_id int primary key,cust_name varchar (50),city varchar(50),grade int, salesman_id int);
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> describe coustomer;
+
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| coustomer_id | int         | NO   | PRI | NULL    |       |
+| cust_name    | varchar(50) | YES  |     | NULL    |       |
+| city         | varchar(50) | YES  |     | NULL    |       |
+| grade        | int         | YES  |     | NULL    |       |
+| salesman_id  | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into coustomer values(3002,"Nick Rimando","New York",100,5001);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into coustomer values(3007,"Brad Davis","New York",200,5001);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into coustomer values(3005,"Graham Zusi","Califonia",200,5002);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into coustomer values(3008,"Julian Green","London",300,5002);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into coustomer values(3004,"Fabian Johnson","Paris",300,5006);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into coustomer values(3009,"Geoff Cameron","Belin",100,5003);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into coustomer values(3003,"Jozy Altidor","Moscow",200,5007);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into coustomer values(3001,"Brad Guzan","London",NULL ,5005);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from coustomer;
++--------------+----------------+-----------+-------+-------------+
+| coustomer_id | cust_name      | city      | grade | salesman_id |
++--------------+----------------+-----------+-------+-------------+
+|         3001 | Brad Guzan     | London    |  NULL |        5005 |
+|         3002 | Nick Rimando   | New York  |   100 |        5001 |
+|         3003 | Jozy Altidor   | Moscow    |   200 |        5007 |
+|         3004 | Fabian Johnson | Paris     |   300 |        5006 |
+|         3005 | Graham Zusi    | Califonia |   200 |        5002 |
+|         3007 | Brad Davis     | New York  |   200 |        5001 |
+|         3008 | Julian Green   | London    |   300 |        5002 |
+|         3009 | Geoff Cameron  | Belin     |   100 |        5003 |
++--------------+----------------+-----------+-------+-------------+
+8 rows in set (0.00 sec)
+mysql> create table salesman(salesman_id int primary key,name varchar (50),city varchar(50),comm float);
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> insert into salesman values(5001,"James Hoog","New York",0.15);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into salesman values(5002,"Nail Knite","Paris",0.13);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into salesman values(5005,"Pit Alex","London",0.11);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into salesman values(5006,"Mc Lyon","Paris",0.14);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into salesman values(5007,"Paul Adam","Rome",0.13);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into salesman values(5003,"Lauson Hen","San Jose",0.12);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from salesman;
++-------------+------------+----------+------+
+| salesman_id | name       | city     | comm |
++-------------+------------+----------+------+
+|        5001 | James Hoog | New York | 0.15 |
+|        5002 | Nail Knite | Paris    | 0.13 |
+|        5003 | Lauson Hen | San Jose | 0.12 |
+|        5005 | Pit Alex   | London   | 0.11 |
+|        5006 | Mc Lyon    | Paris    | 0.14 |
+|        5007 | Paul Adam  | Rome     | 0.13 |
++-------------+------------+----------+------+
+6 rows in set (0.00 sec)
+
+ SELECT
+    ->     c.cust_name AS Customer_Name,
+    ->     c.city AS Customer_City,
+    ->     s.name AS Salesman_Name,
+    ->     s.comm AS Commission
+    -> FROM
+    ->     coustomer AS c
+    -> JOIN
+    ->     salesman AS s ON c.salesman_id = s.salesman_id;
++----------------+---------------+---------------+------------+
+| Customer_Name  | Customer_City | Salesman_Name | Commission |
++----------------+---------------+---------------+------------+
+| Brad Guzan     | London        | Pit Alex      |       0.11 |
+| Nick Rimando   | New York      | James Hoog    |       0.15 |
+| Jozy Altidor   | Moscow        | Paul Adam     |       0.13 |
+| Fabian Johnson | Paris         | Mc Lyon       |       0.14 |
+| Graham Zusi    | Califonia     | Nail Knite    |       0.13 |
+| Brad Davis     | New York      | James Hoog    |       0.15 |
+| Julian Green   | London        | Nail Knite    |       0.13 |
+| Geoff Cameron  | Belin         | Lauson Hen    |       0.12 |
++----------------+---------------+---------------+------------+
+8 rows in set (0.00 sec)
